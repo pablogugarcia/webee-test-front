@@ -1,1 +1,56 @@
-<p>sensor-list works!</p>
+<section class="sensor-wrapper">
+  <h2>List of sensors</h2>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 sensor-table">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="latlng">
+      <mat-header-cell *matHeaderCellDef> Lat/Lng </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        LAT: {{ element.location.coordinates[0] }}/LNG: {{
+          element.location.coordinates[1]
+        }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.active }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="maxval">
+      <mat-header-cell *matHeaderCellDef> Maximo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.maxval }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="minval">
+      <mat-header-cell *matHeaderCellDef> Minimo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.minval }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" aria-label="Add sensor" (click)="onDelete($event, element)">
+          <mat-icon class="sensor-delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onRowClick(row)"
+    ></mat-row>
+  </mat-table>
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="Add sensor"
+    class="sensor-button-add"
+  >
+    <mat-icon class="sensor-add">add_circle</mat-icon>
+  </button>
+</section>
