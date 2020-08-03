@@ -67,9 +67,12 @@ export class SensorListComponent implements OnInit {
 
   onDelete(event: InputEvent, sensor: Sensor & { _id: string }): void {
     event.stopPropagation();
-    this.sensorService
-      .removeSensor(sensor._id)
-      .subscribe(() => alert('Eliminado con exito'));
+    this.sensorService.removeSensor(sensor._id).subscribe((res) => {
+      this.dataSource = this.dataSource.filter(
+        (elements: Sensor & { _id: string }) =>
+          elements._id === res._id ? null : elements
+      );
+    });
   }
 
   createSensor(sensorData: SensorFormValues): void {

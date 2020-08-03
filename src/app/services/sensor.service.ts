@@ -33,9 +33,9 @@ export class SensorService {
       .pipe(catchError(handleHttpError));
   }
 
-  removeSensor(sensorId: string): Observable<Sensor>{
+  removeSensor(sensorId: string): Observable<Sensor & { _id: string }> {
     return this.http
-      .delete<Sensor>(this.sensorEndPoint + '/' + sensorId)
+      .delete<Sensor & { _id: string }>(this.sensorEndPoint + '/' + sensorId)
       .pipe(catchError(handleHttpError));
   }
 }
