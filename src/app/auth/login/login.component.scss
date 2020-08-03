@@ -1,0 +1,31 @@
+.login-wrapper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-image: url("../../../assets/micah-williams-lmFJOx7hPc4-unsplash.jpg");
+  background-size: cover;
+  position: absolute;
+  & .box {
+    width: 30vw;
+    height: 50vh;
+    margin: 2% 2% 2% auto;
+
+    & .mat-card-header {
+      justify-content: center;
+    }
+
+    & .login-form {
+      & .login-fields {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+      }
+      & .login-button {
+        width: 6vw;
+      }
+    }
+  }
+}
+.mat-card-header .mat-card-title {
+  text-align: center;
+}
