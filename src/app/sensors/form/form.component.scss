@@ -1,0 +1,12 @@
+form {
+  width: 80%;
+  margin: 0 auto;
+  & .mat-form-field {
+    width: 100%;
+  }
+}
+
+.sensor-form-buttons {
+  display: flex;
+  justify-content: space-around;
+}
