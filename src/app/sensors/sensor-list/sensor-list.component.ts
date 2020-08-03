@@ -1,8 +1,13 @@
+import { SensorFormValues } from './../form/form.component';
 import { DialogComponent } from './../dialog/dialog.component';
 import { Sensor } from './../../models/Sensor';
 import { SensorService } from './../../services/sensor.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sensor-list',
@@ -33,10 +38,30 @@ export class SensorListComponent implements OnInit {
   }
 
   onRowClick(sensor: Sensor): void {
-    this.dialog.open(DialogComponent, {
-      data: sensor,
+    this.openDialog(sensor);
+  }
+
+  openDialog(sensor?: Sensor): void {
+    let defaultOpts: MatDialogConfig = {
       height: '95vh',
-      width: '40vw'
+      width: '40vw',
+    };
+
+    if (sensor) {
+      defaultOpts = {
+        ...defaultOpts,
+        data: sensor,
+      };
+    }
+
+    const dialogRef = this.dialog.open(DialogComponent, defaultOpts);
+
+    dialogRef.afterClosed().subscribe({
+      next: (values) => {
+        if (values) {
+          this.createSensor(values);
+        }
+      },
     });
   }
 
@@ -45,5 +70,21 @@ export class SensorListComponent implements OnInit {
     this.sensorService
       .removeSensor(sensor._id)
       .subscribe(() => alert('Eliminado con exito'));
+  }
+
+  createSensor(sensorData: SensorFormValues): void {
+    const normalizedSensor: Sensor = {
+      active: sensorData.active,
+      location: {
+        type: 'Point',
+        coordinates: [sensorData.latitude, sensorData.longitude],
+      },
+      maxval: sensorData.maxval,
+      minval: sensorData.minval,
+      name: sensorData.name,
+    };
+    this.sensorService.createSensor(normalizedSensor).subscribe((sensor) => {
+      this.dataSource = [...this.dataSource, sensor];
+    });
   }
 }

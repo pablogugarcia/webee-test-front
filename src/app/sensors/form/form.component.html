@@ -1,52 +1,78 @@
-<form [formGroup]="sensorForm" (ngSubmit)="onSubmit(sensorForm.value)">
+<form [formGroup]="sensorForm">
   <div>
     <mat-form-field appearance="outline" class="login-full-width">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" #username autocomplete="off" />
+      <input
+        matInput
+        placeholder="Name"
+        formControlName="name"
+        #username
+        autocomplete="off"
+      />
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field appearance="outline" class="login-full-width">
-      <mat-label>Active</mat-label>
-      <input matInput placeholder="Active" #username autocomplete="off" />
-    </mat-form-field>
+    <mat-checkbox matInput class="example-margin" formControlName="active"
+      >¿It is active?</mat-checkbox
+    >
   </div>
 
   <div>
     <mat-form-field appearance="outline" class="login-full-width">
       <mat-label>MaxVal</mat-label>
-      <input matInput placeholder="MaxVal" #username autocomplete="off" />
+      <input
+        matInput
+        placeholder="MaxVal"
+        type="number"
+        formControlName="maxval"
+        #maxval
+        autocomplete="off"
+      />
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="outline" class="login-full-width">
       <mat-label>Minval</mat-label>
-      <input matInput placeholder="Minval" #username autocomplete="off" />
+      <input
+        matInput
+        placeholder="Minval"
+        type="number"
+        formControlName="minval"
+        #minval
+        autocomplete="off"
+      />
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="outline" class="login-full-width">
       <mat-label>Latitude</mat-label>
-      <input matInput placeholder="Latitude" #username autocomplete="off" />
+      <input
+        matInput
+        placeholder="Latitude"
+        formControlName="latitude"
+        #username
+        type="number"
+        autocomplete="off"
+      />
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="outline" class="login-full-width">
       <mat-label>Longitude</mat-label>
-      <input matInput placeholder="Longitude" #username autocomplete="off" />
+      <input
+        matInput
+        placeholder="Longitude"
+        formControlName="longitude"
+        type="number"
+        #username
+        autocomplete="off"
+      />
     </mat-form-field>
   </div>
 
-  <div class="sensor-form-buttons">
-    <button mat-raised-button color="warn" class="button" type="submit">
-      Cancel
-    </button>
-    <button mat-raised-button color="primary" class="button" type="submit">
-      Done !
-    </button>
-  </div>
+  <ng-content> </ng-content>
 </form>

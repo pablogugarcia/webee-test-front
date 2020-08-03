@@ -1,4 +1,19 @@
 <h1 mat-dialog-title>Create Sensor</h1>
 <div class="dialog-content">
-  <app-form class="dialog-content"></app-form>
+  <app-form class="dialog-content" #form [values]="data">
+    <div style="display: flex; justify-content: space-around;">
+      <button mat-raised-button color="warn" class="button" mat-dialog-close>
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="button"
+        (click)="onSubmit(form.value)"
+        [disabled]="!form.isValid"
+        >
+        Done !
+      </button>
+    </div>
+  </app-form>
 </div>
