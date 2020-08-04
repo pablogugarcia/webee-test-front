@@ -1,0 +1,19 @@
+<form [formGroup]="sensorForm">
+    <div>
+      <mat-form-field appearance="outline" class="login-full-width">
+        <mat-label>Value</mat-label>
+        <input
+          matInput
+          placeholder="Name"
+          formControlName="value"
+          #username
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  
+
+  
+    <ng-content> </ng-content>
+  </form>
+  

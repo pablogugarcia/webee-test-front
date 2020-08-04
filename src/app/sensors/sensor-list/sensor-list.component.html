@@ -1,3 +1,4 @@
+<div class="sensor-back"></div>
 <section class="sensor-wrapper">
   <h2>List of sensors</h2>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8 sensor-table">
@@ -9,9 +10,8 @@
     <ng-container matColumnDef="latlng">
       <mat-header-cell *matHeaderCellDef> Lat/Lng </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        LAT: {{ element.location.coordinates[0] }}/LNG: {{
-          element.location.coordinates[1]
-        }}
+        LAT: {{ element.location.coordinates[0] }}/LNG:
+        {{ element.location.coordinates[1] }}
       </mat-cell>
     </ng-container>
 
@@ -33,8 +33,41 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button color="warn" aria-label="Add sensor" (click)="onDelete($event, element)">
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Add sensor"
+          (click)="onAction($event, 'delete', element)"
+        >
           <mat-icon class="sensor-delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="addEvent">
+      <mat-header-cell *matHeaderCellDef> Add event </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Add sensor event"
+          (click)="onAction($event, 'add', element)"
+        >
+          <mat-icon class="sensor-add">add_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ListEvents">
+      <mat-header-cell *matHeaderCellDef> List events </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="accent"
+          aria-label="Add sensor"
+          (click)="onAction($event, 'list', element)"
+        >
+          <mat-icon class="sensor-delete">list</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

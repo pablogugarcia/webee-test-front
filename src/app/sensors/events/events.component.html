@@ -1,0 +1,26 @@
+<div *ngIf="data.type === 'list'; then list; else add"></div>
+
+<ng-template #add>
+  <h1 mat-dialog-title>Create Sensor Event</h1>
+  <div class="dialog-content-event-title"  >
+    <app-event-form class="dialog-content-sensor-event" #form >
+      <div class="buttons-dialog">
+        <button mat-raised-button color="warn" mat-dialog-close style="margin-right : 10%;">
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="button"
+          (click)="onSubmit(form.value)"
+          [disabled]="!form.isValid"
+        >
+          Done !
+        </button>
+      </div>
+    </app-event-form>
+  </div>
+</ng-template>
+<ng-template #list>
+  <app-list-events [items]="data.payload || []"></app-list-events>
+</ng-template>
